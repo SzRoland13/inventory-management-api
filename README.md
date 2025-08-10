@@ -79,3 +79,8 @@ API documentation and example requests will be provided soon.
     /internal      # Core business logic and services
     /scripts       # Setup and utility scripts (e.g., setup.sh)
     /db            # Database initialization and migrations
+
+## Contributing
+
+Contributions are welcome!
+Please open issues or pull requests for bug fixes, new features, or improvements.
