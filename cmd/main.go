@@ -2,14 +2,12 @@ package main
 
 import (
 	"fmt"
+	"inventory-management-api/internal/app"
+	"inventory-management-api/internal/config"
+	"inventory-management-api/internal/routers"
 	"log"
 	"os"
 	"os/exec"
-
-	"github.com/gin-gonic/gin"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 )
 
 func runSetupScript() error {
@@ -27,17 +25,11 @@ func main() {
 	}
 	fmt.Println("Setup finished, starting backend...")
 
-	dsn := "host=localhost user=postgres password=postgres dbname=your_db_name port=5432 sslmode=disable TimeZone=Europe/Budapest"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info), // debug info a konzolra
-	})
+	db := config.InitDB()
 
-	if err != nil {
-		log.Fatal("failed to connect database:", err)
-	}
+	container := app.NewContainer(db)
 
-	router := gin.Default()
+	r := routers.SetupRouter(container)
 
-	fmt.Println("Backend started on :8080")
-	router.Run(":8080")
+	log.Fatal(r.Run(":8080"))
 }
