@@ -11,12 +11,7 @@ services:
       - '5432:5432'
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-      - ./db/data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
-  migrate:
-    image: migrate/migrate:v4.15.2
-    command: -path=/migrations -database=postgres://postgres:postgres@db:5432/inventory?sslmode=disable up
-    volumes:
-      - ./db/migrations:/migrations
-    depends_on:
-      - db
+volumes:
+  postgres_data:

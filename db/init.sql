@@ -99,3 +99,8 @@ CREATE TABLE Documentline (
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP NOT NULL DEFAULT now()
 );
+
+-- Create default admin user (only if not exists) password is: admin.ADMIN.1234!
+INSERT INTO "User" (username, email, password, role)
+SELECT 'admin', 'admin@example.com', '$2a$12$Xn0TF.Pc6cT3WvagkECNFeVpwGCZKYDlhTo6VkuujyDKU/9Ury8Ia', 'ADMIN'
+WHERE NOT EXISTS (SELECT 1 FROM "User" WHERE username = 'admin');
