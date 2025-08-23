@@ -16,9 +16,10 @@ type Container struct {
 func NewContainer(db *gorm.DB) *Container {
 	//Repositories
 	userRepository := repositories.NewUserRepository(db)
+	refreshTokenRepository := repositories.NewRefreshTokenRepository(db)
 
 	//Services
-	authService := services.NewAuthService(userRepository)
+	authService := services.NewAuthService(userRepository, refreshTokenRepository)
 
 	//Handlers
 	authHandler := handlers.NewAuthHandler(authService)
