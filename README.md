@@ -30,21 +30,23 @@ The API is designed to be consumed by frontend applications or other services to
 
 The backend uses a PostgreSQL database with the following core tables:
 
-- **users** — system users with roles and authentication data
-- **warehouse_locations** — physical address data for warehouse locations
-- **warehouses** — warehouses linked to locations and users
-- **products** — product catalog with SKU, pricing, and VAT rates
-- **stock_balances** — current stock quantities per warehouse and product
-- **partners** — business partners with types and tax information
-- **contacts** — partner contact details
-- **documents** — inventory documents like orders, invoices, etc.
-- **document_lines** — individual lines/items within a document
+- **User** — system users with roles and authentication data
+- **Warehouse_location** — physical address data for warehouse locations
+- **Warehouse** — warehouses linked to locations and users
+- **Product** — product catalog with SKU, pricing, and VAT rates
+- **Stock_balance** — current stock quantities per warehouse and product
+- **Partner** — business partners with types and tax information
+- **Contact_info** — partner contact details
+- **Document** — inventory documents like orders, invoices, etc.
+- **Documentline** — individual lines/items within a document
 
 ## Setup and Installation
 
 ### Prerequisites
 
-- Docker
+- Go 1.20+ installed  
+- PostgreSQL database  
+- Linux or Windows Subsystem for Linux (WSL) recommended for running the setup script  
 
 ### Setup
 
@@ -53,9 +55,18 @@ The backend uses a PostgreSQL database with the following core tables:
    git clone https://github.com/yourusername/inventory-management.git
    cd inventory-management
 
-2. Start docker with:
+2. Run the setup script to initialize the database and environment:
 
-    docker compose up -d
+    ./scripts/setup.sh
+
+Note: The setup script is designed to run in a Linux or WSL environment.
+
+3. Configure your environment variables (e.g., database credentials) as required.
+
+4. Run or build and run the Go API:
+
+    go build -o inventory-api ./cmd/inventory-api
+    ./inventory-api
 
 ## Usage
 
@@ -66,7 +77,7 @@ API documentation and example requests will be provided soon.
 
     /cmd           # Main application entrypoints
     /internal      # Core business logic and services
-    /scripts       # Setup and utility scripts (e.g., run-migrations.sh)
+    /scripts       # Setup and utility scripts (e.g., setup.sh)
     /db            # Database initialization and migrations
 
 ## Contributing

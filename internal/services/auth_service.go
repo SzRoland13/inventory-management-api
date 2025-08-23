@@ -3,8 +3,8 @@ package services
 import (
 	"errors"
 	"inventory-management-api/internal/models"
-	"inventory-management-api/internal/pkg/utils"
 	"inventory-management-api/internal/repositories"
+	"inventory-management-api/pkg/utils"
 )
 
 type AuthService interface {

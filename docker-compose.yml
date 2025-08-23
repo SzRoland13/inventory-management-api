@@ -10,28 +10,8 @@ services:
     ports:
       - '5432:5432'
     volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - postgres_data:/var/lib/postgresql/data
-
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev 
-    container_name: inventory_api
-    depends_on:
-      - db
-    environment:
-      DB_HOST: inventory_db
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASS: postgres
-      DB_NAME: inventory
-    ports:
-      - "8080:8080"
-    volumes:
-      - .:/app
-      - /app/tmp
-    command: sh -c "./scripts/run-migrations.sh && air -c .air.toml"
-
 
 volumes:
   postgres_data:

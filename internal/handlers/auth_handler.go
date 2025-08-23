@@ -49,7 +49,3 @@ func (h *AuthHandler) Login(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"token": token})
 }
-
-func (h *AuthHandler) Ping(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"ping": "pong"})
-}
