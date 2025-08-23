@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS document_lines;
+DROP TABLE IF EXISTS documents;
+DROP TABLE IF EXISTS contacts;
+DROP TABLE IF EXISTS partners;
+DROP TABLE IF EXISTS stock_balances;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS warehouses;
+DROP TABLE IF EXISTS warehouse_locations;
+DROP TABLE IF EXISTS users;
