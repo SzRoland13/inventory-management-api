@@ -8,4 +8,5 @@ import (
 
 func PublicRoutes(r *gin.RouterGroup, c *app.Container) {
 	r.POST("/login", c.AuthHandler.Login)
+	r.GET("/ping", c.AuthHandler.Ping)
 }

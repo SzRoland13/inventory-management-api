@@ -2,7 +2,7 @@ package middlewares
 
 import (
 	"inventory-management-api/internal/domain"
-	"inventory-management-api/pkg/utils"
+	"inventory-management-api/internal/pkg/utils"
 	"net/http"
 	"slices"
 	"strings"
